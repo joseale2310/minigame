@@ -30,13 +30,16 @@ def userattacks(user,enemy,totalDamageDone):
 	damageDone = round(user.attvalues[2]*(1-(enemy.attvalues[3]/(100+enemy.attvalues[3]))),2)
 	print "You have done",damageDone,"damage points!"
 	totalDamageDone += damageDone
+	raw_input()
 	return(totalDamageDone)
 
 def enemyattacks(user,enemy,damageRecived):
 	print "Your enemy attacks!"
+	raw_input()
 	damageDone = round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
 	damageRecived += damageDone
 	print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "HP left!"
+	raw_input()
 	return(damageRecived)
 
 #combate
@@ -56,6 +59,7 @@ def combate(user):
 
 	while fight == False:
 		if totalDamageDone >= enemy.attvalues[0]:
+			raw_input()
 			print "You have defeated the " + enemy.tipe + "!"
 			print "You have earned",enemy.exp,"exp points!"
 			user.exp += enemy.exp
@@ -66,6 +70,7 @@ def combate(user):
 
 		elif damageRecived >= user.attvalues[0]:
 			print "You are dead!"
+			raw_input()
 			win = False
 			fight = True
 		else:

@@ -7,7 +7,8 @@ from random import random
 from characters import *
 from combat import *
 from save_system import *
-from menu import *
+from pause_menu import *
+import os
 
 call(["clear"])
 
@@ -16,7 +17,7 @@ main_menu = True
 while main_menu:
 	print "1. Start new adventure"
 	print "2. Load adventure"
-	option = raw_input("1/2: ")
+	option = raw_input("Enter option 1 or 2: ")
 	
 	if option == "1":
 		print "\n"
@@ -26,7 +27,7 @@ while main_menu:
 
 	elif option == "2":
 		print "\n"
-		user = load("save.txt")
+		user = load()
 		main_menu = False
 
 #maps

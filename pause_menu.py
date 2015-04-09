@@ -15,7 +15,7 @@ def menu(user):
 		user.showatt()
 		action=getch.getch()
 		if action == "s":
-			save(user,"save.txt")
+			save(user)
 			print "Saving!"
 			raw_input()
 

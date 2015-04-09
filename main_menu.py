@@ -26,5 +26,5 @@ while main_menu:
 
 	elif option == "2":
 		print "\n"
-		user = load("save.txt")
+		user = load()
 		main_menu = False
