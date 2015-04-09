@@ -24,17 +24,35 @@ def generateEnemy(ratio,lvl):
 	ene.lvluptipe()
 	return(ene)
 
+def userattacks(user,enemy,totalDamageDone):
+	print "Your turn!"
+	raw_input()
+	damageDone = round(user.attvalues[2]*(1-(enemy.attvalues[3]/(100+enemy.attvalues[3]))),2)
+	print "You have done",damageDone,"damage points!"
+	totalDamageDone += damageDone
+	return(totalDamageDone)
+
+def enemyattacks(user,enemy,damageRecived):
+	print "Your enemy attacks!"
+	damageDone = round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
+	damageRecived += damageDone
+	print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "HP left!"
+	return(damageRecived)
+
 #combate
 def combate(user):
 	"""Function to make fights"""
 	call(["clear"])
+	turn_value = 100
+	enemy_turn = 0
+	user_turn = 0
 	damageDone = 0
 	totalDamageDone = 0
 	damageRecived = 0
 	fight = False
 	win = False 
 	enemy=generateEnemy(1.2,user.lvl)
-	print "You have entered in combat with a " + enemy.tipe + "!"
+	print "You have entered in combat with a " + enemy.tipe + "!\n"
 
 	while fight == False:
 		if totalDamageDone >= enemy.attvalues[0]:
@@ -51,29 +69,52 @@ def combate(user):
 			win = False
 			fight = True
 		else:
-			if user.attvalues[4]>enemy.attvalues[4]:
-				print "Your turn!"
-				raw_input()
-				damageDone = round(user.attvalues[2]*(1-(enemy.attvalues[3]/(100+enemy.attvalues[3]))),2)
-				print "You have done",damageDone,"damage points!"
-				totalDamageDone += damageDone
+			user_turn+=user.attvalues[4]
+			enemy_turn+=enemy.attvalues[4]
+			
+			if user_turn >= turn_value and enemy_turn >= turn_value:
 				
-				print "Your enemy attacks!"
-				damageDone = round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
-				damageRecived += damageDone
-				print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "health points left!"
+				if user_turn > enemy_turn:
+					totalDamageDone = userattacks(user,enemy,totalDamageDone)
+					damageRecived = enemyattacks(user,enemy,damageRecived)
+					user_turn -= turn_value	
+					enemy_turn -= turn_value
+
+			 	else:
+			 		damageRecived = enemyattacks(user,enemy,damageRecived)
+			 		totalDamageDone = userattacks(user,enemy,totalDamageDone)
+			 		user_turn -= turn_value	
+					enemy_turn -= turn_value
+
+			elif user_turn >= turn_value and enemy_turn < turn_value:
+				totalDamageDone = userattacks(user,enemy,totalDamageDone)
+				user_turn -= turn_value	
+
+			elif user_turn < turn_value and enemy_turn >= turn_value:
+				damageRecived = enemyattacks(user,enemy,damageRecived)
+				enemy_turn -= turn_value
+			# 	print "Your turn!"
+			# 	raw_input()
+			# 	damageDone = round(user.attvalues[2]*(1-(enemy.attvalues[3]/(100+enemy.attvalues[3]))),2)
+			# 	print "You have done",damageDone,"damage points!"
+			# 	totalDamageDone += damageDone
 				
-			else:
-				print "El enemigo ataca!"
-				damageDone = round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
-				damageRecived += damageDone
-				print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "health points left!"
+			# 	print "Your enemy attacks!"
+			# 	damageDone = round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
+			# 	damageRecived += damageDone
+			# 	print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "health points left!"
 				
-				print "Your turn!"
-				raw_input()
-				damageDone = round(user.attvalues[2]*(1-(enemy.attvalues[3]/(100+enemy.attvalues[3]))),2)
-				print "You have done",damageDone,"damage points!"
-				totalDamageDone += damageDone
+			# else:
+			# 	print "El enemigo ataca!"
+			# 	damageDone = round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
+			# 	damageRecived += damageDone
+			# 	print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "health points left!"
+				
+			# 	print "Your turn!"
+			# 	raw_input()
+			# 	damageDone = round(user.attvalues[2]*(1-(enemy.attvalues[3]/(100+enemy.attvalues[3]))),2)
+			# 	print "You have done",damageDone,"damage points!"
+			# 	totalDamageDone += damageDone
 				
 
 	return(win)
