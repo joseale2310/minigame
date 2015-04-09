@@ -6,12 +6,13 @@ class champion:
 	"""Create champion"""
 	def __init__(self,name,tipe):
 		self.name=name
-		self.attributes=["vitality","stamina","strength","defense","agility","magic","resistance"]
-		self.attvalues=[0,0,0,0,0,0,0]
+		self.attributes=["HP","MP","Strength","Defense","Agility","Magic","Resistance","Accuracy"]
+		self.attvalues=[0,0,0,0,0,0,0,0]
 		self.lvl=0
 		self.tipe=tipe
 		self.lvlexp=50*self.lvl
 		self.exp=0
+		self.position=[]
 	def lvlup(self,attup):
 		for att in range(len(self.attvalues)):
 			self.attvalues[att]+=attup[att]
@@ -49,13 +50,23 @@ class champion:
 			print "\nLevel up! Lvl", self.lvl
 			self.showatt()
 
+####################################################
+def createuser():
+	"""Function to create a character"""
+	name = raw_input("Hello! Write your character's name! ")
+	tipe = raw_input("Now your character's profession! ")
+
+	user = champion(name,tipe)
+	user.checklvl()
+	return(user)
+
 #########################################################################################
 #enemigos
 class enemy:
 	"""Create enemy"""
 	def __init__(self,ratio,lvl,tipe):
-		self.attributes = ["vitality","stamina","strength","defense","agility","magic","resistance"]
-		self.attvalues = [0,0,0,0,0,0,0]
+		self.attributes = ["HP","MP","Strength","Defense","Agility","Magic","Resistance","Accuracy"]
+		self.attvalues = [0,0,0,0,0,0,0,0]
 		self.lvl = lvl
 		self.ratio = ratio
 		self.exp = 20*ratio*lvl
@@ -91,11 +102,3 @@ class enemy:
 			print self.attributes[att],self.attvalues[att]
 
 
-def createuser():
-	"""Function to create a character"""
-	name = raw_input("Hello! Write your character's name! ")
-	tipe = raw_input("Now your character's profession! ")
-
-	user = champion(name,tipe)
-	user.checklvl()
-	return(user)
