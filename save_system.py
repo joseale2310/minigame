@@ -10,6 +10,7 @@ def save(user,save_file):
 		pickle.dump(user, output, -1)
 
 
-def load(user,save_file):
+def load(save_file):
 	with open(save_file, 'rb') as input:
 		user = pickle.load(input)
+		return(user)

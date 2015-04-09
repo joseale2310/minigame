@@ -10,13 +10,29 @@ from save_system import *
 from menu import *
 
 call(["clear"])
-user = createuser()
-raw_input()
+
+main_menu = True
+
+while main_menu:
+	print "1. Start new adventure"
+	print "2. Load adventure"
+	option = raw_input("1/2: ")
+	
+	if option == "1":
+		print "\n"
+		user = createuser()
+		raw_input()
+		main_menu =False
+
+	elif option == "2":
+		print "\n"
+		user = load("save.txt")
+		main_menu = False
 
 #maps
 marcador ="+"
 x = user.position[1]
-y =user.position[2]
+y = user.position[2]
 px = user.position[3]
 py = user.position[4]
 mapa = open(user.position[0])
@@ -111,9 +127,10 @@ while exit == False:
 			y = py
 
 	elif move == "p":
+		user.position = ["laberinto.txt",x,y,px,py]
 		menu(user)
 
-	if py == 9 and px==10:
+	if py == 9 and px ==10:
 		print "You have won the game!"
 		exit = True
 

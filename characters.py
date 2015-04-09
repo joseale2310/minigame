@@ -38,6 +38,7 @@ class champion:
 			self.lvlup(attup)
 
 	def showatt(self):
+		print "Profession: ", self.tipe
 		print "Level:", self.lvl, "Exp:", self.exp
 		for att in range(len(self.attributes)):
 			print self.attributes[att],self.attvalues[att]
@@ -55,9 +56,10 @@ class champion:
 def createuser():
 	"""Function to create a character"""
 	name = raw_input("Hello! Write your character's name! ")
-	tipe = raw_input("Now your character's profession! ")
-
-	user = champion(name,tipe)
+	tipe = input("Now your character's profession!\nWarrior(1), Guardian(2), Assassin(3), Mage(4), Antimage(5): ")
+	tipes=["warrior","guardian","assassin", "mage", "antimage"]
+	print tipe
+	user = champion(name,tipes[tipe-1])
 	user.checklvl()
 	return(user)
 
