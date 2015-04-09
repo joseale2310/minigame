@@ -59,7 +59,7 @@ def combate(user):
 				totalDamageDone += damageDone
 				
 				print "Your enemy attacks!"
-				damageDone += round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
+				damageDone = round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
 				damageRecived += damageDone
 				print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "health points left!"
 				
@@ -69,7 +69,7 @@ def combate(user):
 				damageRecived += damageDone
 				print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "health points left!"
 				
-				print "Tu turno!"
+				print "Your turn!"
 				raw_input()
 				damageDone = round(user.attvalues[2]*(1-(enemy.attvalues[3]/(100+enemy.attvalues[3]))),2)
 				print "You have done",damageDone,"damage points!"

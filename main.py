@@ -2,46 +2,50 @@
 # -*- coding: utf-8 -*
 from subprocess import call
 import getch
+import cPickle as pickle
 from random import random
 from characters import *
 from combat import *
+from save_system import *
+from menu import *
 
+call(["clear"])
 user = createuser()
 raw_input()
 
-#laberinto
+#maps
 marcador ="+"
-x=1
-y=19
-px=1
-py=19
-mapa = open("laberinto.txt")
-laberinto = mapa.readlines()
-laberinto_lista=[]
-laberinto_linea=[]
-for linea in laberinto:
+x = user.position[1]
+y =user.position[2]
+px = user.position[3]
+py = user.position[4]
+mapa = open(user.position[0])
+maps = mapa.readlines()
+maps_lista=[]
+maps_linea=[]
+for linea in maps:
 	for caracter in range(len(linea)):
 		caracteres=linea[caracter]
-		laberinto_linea.append(caracteres)
+		maps_linea.append(caracteres)
 
-	laberinto_lista.append(laberinto_linea)
-	laberinto_linea=[]
+	maps_lista.append(maps_linea)
+	maps_linea=[]
 
 def movimiento(x,px,y,py):
-	laberinto_lista[y][x] = " "
-	laberinto_lista[py][px] = marcador
+	maps_lista[y][x] = " "
+	maps_lista[py][px] = marcador
 	conector = ""
-	laberinto_impreso = []
+	maps_impreso = []
 
-	for linea in laberinto_lista:
+	for linea in maps_lista:
 		
 		imprimir=conector.join(linea)
 		
-		laberinto_impreso.append(imprimir)
+		maps_impreso.append(imprimir)
 		
-	laberinto_impreso=conector.join(laberinto_impreso)
+	maps_impreso=conector.join(maps_impreso)
 	call(["clear"])
-	print laberinto_impreso
+	print maps_impreso
 
 exit = False
 while exit == False:
@@ -49,9 +53,9 @@ while exit == False:
 	move=getch.getch()
 	if move == "a":
 		px = x-1
-		if laberinto_lista[py][px] == "|" or laberinto_lista[py][px]=="-":
+		if maps_lista[py][px] == "|" or maps_lista[py][px]=="-":
 			px = x
-		elif laberinto_lista[py][px] == "#":
+		elif maps_lista[py][px] == "#":
 			result=combate(user)
 			if result == True:
 				movimiento(x,px,y,py)
@@ -63,9 +67,9 @@ while exit == False:
 			x = px
 	elif move == "d":
 		px = x+1
-		if laberinto_lista[py][px]=="|" or laberinto_lista[py][px]=="-":
+		if maps_lista[py][px]=="|" or maps_lista[py][px]=="-":
 			px = x
-		elif laberinto_lista[py][px]=="#":
+		elif maps_lista[py][px]=="#":
 			result=combate(user)
 			if result == True:
 				movimiento(x,px,y,py)
@@ -77,10 +81,10 @@ while exit == False:
 			x = px
 	elif move == "w":
 		py = y-1
-		print laberinto[py][px]
-		if laberinto_lista[py][px]=="|" or laberinto_lista[py][px]=="-":
+		print maps[py][px]
+		if maps_lista[py][px]=="|" or maps_lista[py][px]=="-":
 			py = y
-		elif laberinto_lista[py][px]=="#":
+		elif maps_lista[py][px]=="#":
 			result=combate(user)
 			if result == True:
 				movimiento(x,px,y,py)
@@ -92,10 +96,10 @@ while exit == False:
 			y = py
 	elif move == "s":
 		py = y+1
-		print laberinto[py][px]
-		if laberinto_lista[py][px]=="|" or laberinto_lista[py][px]=="-":
+		print maps[py][px]
+		if maps_lista[py][px]=="|" or maps_lista[py][px]=="-":
 			py = y
-		elif laberinto_lista[py][px]=="#":
+		elif maps_lista[py][px]=="#":
 			result=combate(user)
 			if result == True:
 				movimiento(x,px,y,py)
@@ -105,6 +109,10 @@ while exit == False:
 		else:
 			movimiento(x,px,y,py)
 			y = py
+
+	elif move == "p":
+		menu(user)
+
 	if py == 9 and px==10:
 		print "You have won the game!"
 		exit = True
