@@ -10,20 +10,37 @@ from save_system import *
 
 def menu(user):
 	exit = False
-	while exit == False:
+	resume = False
+	while resume == False:
 		call(["clear"])
+		print "Pause menu\n"
+		options = "S: save  L: load  P: resume  E: exit game\n"
+		print options + "-"*len(options)+"\n"
+		title=user.name+" attributes\n"
+		print title+"-"*len(title)
 		user.showatt()
 		action=getch.getch()
 		if action == "s":
 			save(user)
-			print "Saving!"
 			raw_input()
 
 		elif action=="l":
-			load(user,"save.txt")
+			user = load()
 			print "Loading!"
 			raw_input()
 
 		elif action == "p":
-			exit= True
-		 
+			exit = False
+			resume = True
+			return(exit)
+
+		elif action == "e":
+			sure = raw_input("\nAre you sure you want to leave? 1.Yes or 2.No: ")
+			if sure == "1":
+				exit = True
+				resume = True
+				return(exit)
+			elif sure == "2":
+				exit = False
+			
+

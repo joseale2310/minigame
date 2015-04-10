@@ -38,11 +38,12 @@ class champion:
 			self.lvlup(attup)
 
 	def showatt(self):
-		print "Profession: ", self.tipe
+		print "Name:", self.name
+		print "Profession:", self.tipe
 		print "Level:", self.lvl, "Exp:", self.exp
 		for att in range(len(self.attributes)):
 			print self.attributes[att],self.attvalues[att]
-		print("\n")
+			
 	def checklvl(self):
 		if self.exp>=self.lvlexp:
 			self.lvl+=1

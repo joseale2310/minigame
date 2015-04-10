@@ -8,27 +8,10 @@ from characters import *
 from combat import *
 from save_system import *
 from pause_menu import *
+from main_menu import *
 import os
 
-call(["clear"])
-
-main_menu = True
-
-while main_menu:
-	print "1. Start new adventure"
-	print "2. Load adventure"
-	option = raw_input("Enter option 1 or 2: ")
-	
-	if option == "1":
-		print "\n"
-		user = createuser()
-		raw_input()
-		main_menu =False
-
-	elif option == "2":
-		print "\n"
-		user = load()
-		main_menu = False
+user = main_menu()
 
 #maps
 marcador ="+"
@@ -129,7 +112,7 @@ while exit == False:
 
 	elif move == "p":
 		user.position = ["laberinto.txt",x,y,px,py]
-		menu(user)
+		exit = menu(user)
 
 	if py == 9 and px ==10:
 		print "You have won the game!"
