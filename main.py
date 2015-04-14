@@ -3,7 +3,9 @@
 from subprocess import call
 import getch
 import cPickle as pickle
+import pygame
 from random import random
+from random import uniform
 from characters import *
 from combat import *
 from save_system import *
@@ -12,7 +14,9 @@ from main_menu import *
 import os
 
 user = main_menu()
-
+pygame.mixer.init()
+sound=pygame.mixer.Sound("prueba.wav")
+sound.play(loops=-1)
 #maps
 marcador ="+"
 x = user.position[1]
@@ -49,6 +53,7 @@ def movimiento(x,px,y,py):
 
 exit = False
 while exit == False:
+
 	movimiento(x,px,y,py)
 	move=getch.getch()
 	if move == "a":

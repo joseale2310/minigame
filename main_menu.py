@@ -4,6 +4,7 @@ from subprocess import call
 import getch
 import cPickle as pickle
 from random import random
+from random import uniform
 from characters import *
 from combat import *
 from save_system import *

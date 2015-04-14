@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*
 from subprocess import call
 from random import random
+from random import uniform
 from characters import *
 #########################################################################################
 def generateEnemy(ratio,lvl):
@@ -27,7 +28,7 @@ def generateEnemy(ratio,lvl):
 def userattacks(user,enemy,totalDamageDone):
 	print "Your turn!"
 	raw_input()
-	damageDone = round(user.attvalues[2]*(1-(enemy.attvalues[3]/(100+enemy.attvalues[3]))),2)
+	damageDone = round(user.attvalues[2]*uniform(user.attvalues[7],1)*(1-(enemy.attvalues[3]/100)),2)
 	print "You have done",damageDone,"damage points!"
 	totalDamageDone += damageDone
 	raw_input()
@@ -36,7 +37,7 @@ def userattacks(user,enemy,totalDamageDone):
 def enemyattacks(user,enemy,damageRecived):
 	print "Your enemy attacks!"
 	raw_input()
-	damageDone = round(enemy.attvalues[2]*(1-(user.attvalues[3]/(100+user.attvalues[3]))),2)
+	damageDone = round(enemy.attvalues[2]*uniform(enemy.attvalues[7],1)*(1-(user.attvalues[3]/100)),2)
 	damageRecived += damageDone
 	print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "HP left!"
 	raw_input()

@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*
 from subprocess import call
 from random import random
+from random import uniform
 from characters import *
 import cPickle as pickle
 import os
