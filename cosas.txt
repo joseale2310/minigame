@@ -1,0 +1,27 @@
+Cosas necesarias
+
+1. Imagen de carga para que se vayan cargando los modulos.
+
+2. Menu principal -> cargar la partida y nueva partida
+
+3. Imagen carga de la partida
+
+4. Camara top. Primer nivel, primer personaje. 
+
+5. Elegir tipo de personaje al principio o durante la partida?
+
+6. Sprite del personaje - animacion personaje - movimiento del personaje por el mapa
+
+7. Menu de pausa. Guardar y cargar la partida, salir del juego, mapa, caracteristicas del personaje, ficha de objetos, opciones (mute, etc).
+
+8. Menu de combate: atacar, habilidad, defensa, objetos, correr
+
+9. Interaccion con NPCs. Dialogo, compra, venta.
+
+
+
+
+
+
+
+
