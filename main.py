@@ -1,8 +1,7 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*
 from subprocess import call
 import getch
-import cPickle as pickle
+import pickle
 import pygame
 from random import random
 from random import uniform
@@ -15,7 +14,7 @@ import os
 
 user = main_menu()
 pygame.mixer.init()
-sound=pygame.mixer.Sound("prueba.wav")
+sound=pygame.mixer.Sound("./sounds/prueba.wav")
 sound.play(loops=-1)
 #maps
 marcador ="+"
@@ -49,7 +48,7 @@ def movimiento(x,px,y,py):
 		
 	maps_impreso=conector.join(maps_impreso)
 	call(["clear"])
-	print maps_impreso
+	print (maps_impreso)
 
 exit = False
 while exit == False:
@@ -86,7 +85,7 @@ while exit == False:
 			x = px
 	elif move == "w":
 		py = y-1
-		print maps[py][px]
+		print (maps[py][px])
 		if maps_lista[py][px]=="|" or maps_lista[py][px]=="-":
 			py = y
 		elif maps_lista[py][px]=="#":
@@ -101,7 +100,7 @@ while exit == False:
 			y = py
 	elif move == "s":
 		py = y+1
-		print maps[py][px]
+		print (maps[py][px])
 		if maps_lista[py][px]=="|" or maps_lista[py][px]=="-":
 			py = y
 		elif maps_lista[py][px]=="#":
@@ -120,7 +119,7 @@ while exit == False:
 		exit = menu(user)
 
 	if py == 9 and px ==10:
-		print "You have won the game!"
+		print ("You have won the game!")
 		exit = True
 
 

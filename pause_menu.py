@@ -1,8 +1,7 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*
 from subprocess import call
 import getch
-import cPickle as pickle
+import pickle
 from random import random
 from random import uniform
 from characters import *
@@ -14,21 +13,21 @@ def menu(user):
 	resume = False
 	while resume == False:
 		call(["clear"])
-		print "Pause menu\n"
+		print ("Pause menu\n")
 		options = "S: save  L: load  P: resume  E: exit game\n"
-		print options + "-"*len(options)+"\n"
+		print (options + "-"*len(options)+"\n")
 		title=user.name+" attributes\n"
-		print title+"-"*len(title)
+		print (title+"-"*len(title))
 		user.showatt()
 		action=getch.getch()
 		if action == "s":
 			save(user)
-			raw_input()
+			input()
 
 		elif action=="l":
 			user = load()
-			print "Loading!"
-			raw_input()
+			print ("Loading!")
+			input()
 
 		elif action == "p":
 			exit = False
@@ -36,7 +35,7 @@ def menu(user):
 			return(exit)
 
 		elif action == "e":
-			sure = raw_input("\nAre you sure you want to leave? 1.Yes or 2.No: ")
+			sure = input("\nAre you sure you want to leave? 1.Yes or 2.No: ")
 			if sure == "1":
 				exit = True
 				resume = True

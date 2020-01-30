@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*
 from subprocess import call
 import getch
@@ -33,11 +32,11 @@ def movimiento(x,px,y,py):
 		
 	laberinto_impreso=conector.join(laberinto_impreso)
 	call(["clear"])
-	print laberinto_impreso
+	print (laberinto_impreso)
 
 
-print "hola!"
-print "Estas aquí",py,px
+print ("hola!")
+print ("Estas aquí",py,px)
 exit = False
 while exit == False:
 	movimiento(x,px,y,py)
@@ -58,7 +57,7 @@ while exit == False:
 			x = px
 	elif move == "w":
 		py = y-1
-		print laberinto[py][px]
+		print (laberinto[py][px])
 		if laberinto_lista[py][px]=="|" or laberinto_lista[py][px]=="-":
 			py = y
 		else:
@@ -66,12 +65,12 @@ while exit == False:
 			y = py
 	elif move == "s":
 		py = y+1
-		print laberinto[py][px]
+		print (laberinto[py][px])
 		if laberinto_lista[py][px]=="|" or laberinto_lista[py][px]=="-":
 			py = y
 		else:
 			movimiento(x,px,y,py)
 			y = py
 	if py == 9 and px==10:
-		print "Has ganado!"
+		print ("Has ganado!")
 		exit = True

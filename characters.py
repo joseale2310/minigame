@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*
 ###########################################################################################
 #personaje
@@ -59,11 +58,11 @@ class champion:
 			self.lvlup(attup)
 
 	def showatt(self):
-		print "Name:", self.name
-		print "Profession:", self.tipe
-		print "Level:", self.lvl, "Exp:", self.exp
+		print ("Name:", self.name)
+		print ("Profession:", self.tipe)
+		print ("Level:", self.lvl, "Exp:", self.exp)
 		for att in range(len(self.attributes)):
-			print self.attributes[att],self.attvalues[att]
+			print (self.attributes[att],self.attvalues[att])
 			
 	def checklvl(self):
 		if self.exp>=self.lvlexp and self.lvl<=10:
@@ -71,17 +70,17 @@ class champion:
 			self.exp=0+(self.exp-self.lvlexp)
 			self.lvlexp=50*self.lvl
 			self.lvluptipe()
-			print "\nLevel up! Lvl", self.lvl,"\n"
+			print ("\nLevel up! Lvl", self.lvl,"\n")
 			self.showatt()
 
 ####################################################
 def createuser():
 	"""Function to create a character"""
-	name = raw_input("Hello! Write your character's name! ")
+	name = input("Hello! Write your character's name! ")
 	tipe = input("Now your character's profession!\nWarrior(1), Guardian(2), Assassin(3), Mage(4), Antimage(5): ")
 	tipes=["warrior","guardian","assassin", "mage", "antimage"]
-	print tipe
-	user = champion(name,tipes[tipe-1])
+	print (tipe)
+	user = champion(name,tipes[int(tipe)-1])
 	user.firstatt()
 	return(user)
 
@@ -124,6 +123,6 @@ class enemy:
 
 	def showatt(self):
 		for att in range(len(self.attributes)):
-			print self.attributes[att],self.attvalues[att]
+			print (self.attributes[att],self.attvalues[att])
 
 

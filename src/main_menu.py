@@ -15,12 +15,12 @@ def main_menu():
 		call(["clear"])
 		print "1. Start new adventure"
 		print "2. Load adventure"
-		option = raw_input("Enter option 1 or 2: ")
+		option = input("Enter option 1 or 2: ")
 		
 		if option == "1":
 			print "\n"
 			user = createuser()
-			raw_input()
+			input()
 			main_menu = False
 			return(user)
 

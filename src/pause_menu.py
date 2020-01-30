@@ -23,12 +23,12 @@ def menu(user):
 		action=getch.getch()
 		if action == "s":
 			save(user)
-			raw_input()
+			input()
 
 		elif action=="l":
 			user = load()
 			print "Loading!"
-			raw_input()
+			input()
 
 		elif action == "p":
 			exit = False
@@ -36,7 +36,7 @@ def menu(user):
 			return(exit)
 
 		elif action == "e":
-			sure = raw_input("\nAre you sure you want to leave? 1.Yes or 2.No: ")
+			sure = input("\nAre you sure you want to leave? 1.Yes or 2.No: ")
 			if sure == "1":
 				exit = True
 				resume = True

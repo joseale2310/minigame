@@ -1,4 +1,3 @@
-#!/usr/bin/python
 # -*- coding: utf-8 -*
 from subprocess import call
 from random import random
@@ -26,21 +25,21 @@ def generateEnemy(ratio,lvl):
 	return(ene)
 
 def userattacks(user,enemy,totalDamageDone):
-	print "Your turn!"
-	raw_input()
+	print ("Your turn!")
+	input()
 	damageDone = round(user.attvalues[2]*uniform(user.attvalues[7],1)*(1-(enemy.attvalues[3]/100)),2)
-	print "You have done",damageDone,"damage points!"
+	print ("You have done",damageDone,"damage points!")
 	totalDamageDone += damageDone
-	raw_input()
+	input()
 	return(totalDamageDone)
 
 def enemyattacks(user,enemy,damageRecived):
-	print "Your enemy attacks!"
-	raw_input()
+	print ("Your enemy attacks!")
+	input()
 	damageDone = round(enemy.attvalues[2]*uniform(enemy.attvalues[7],1)*(1-(user.attvalues[3]/100)),2)
 	damageRecived += damageDone
-	print "You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "HP left!"
-	raw_input()
+	print ("You have recived",damageDone,"damage points!.","You have",(user.attvalues[0]-damageRecived), "HP left!")
+	input()
 	return(damageRecived)
 
 #combate
@@ -56,22 +55,22 @@ def combate(user):
 	fight = False
 	win = False 
 	enemy=generateEnemy(1+random(),user.lvl)
-	print "You have entered in combat with a " + enemy.tipe + "!\n"
+	print ("You have entered in combat with a " + enemy.tipe + "!\n")
 
 	while fight == False:
 		if totalDamageDone >= enemy.attvalues[0]:
-			raw_input()
-			print "You have defeated the " + enemy.tipe + "!"
-			print "You have earned",enemy.exp,"exp points!"
+			input()
+			print ("You have defeated the " + enemy.tipe + "!")
+			print ("You have earned",enemy.exp,"exp points!")
 			user.exp += enemy.exp
 			user.checklvl()
-			raw_input() 
+			input() 
 			win = True
 			fight = True
 
 		elif damageRecived >= user.attvalues[0]:
-			print "You are dead!"
-			raw_input()
+			print ("You are dead!")
+			input()
 			win = False
 			fight = True
 		else:
@@ -96,14 +95,14 @@ def combate(user):
 						enemy_turn -= turn_value
 					else:
 						damageRecived = enemyattacks(user,enemy,damageRecived)
-			 			totalDamageDone = userattacks(user,enemy,totalDamageDone)
-			 			user_turn -= turn_value	
+						totalDamageDone = userattacks(user,enemy,totalDamageDone)
+						user_turn -= turn_value
 						enemy_turn -= turn_value
 
-			 	else:
-			 		damageRecived = enemyattacks(user,enemy,damageRecived)
-			 		totalDamageDone = userattacks(user,enemy,totalDamageDone)
-			 		user_turn -= turn_value	
+				else:
+					damageRecived = enemyattacks(user,enemy,damageRecived)
+					totalDamageDone = userattacks(user,enemy,totalDamageDone)
+					user_turn -= turn_value	
 					enemy_turn -= turn_value
 
 			elif user_turn >= turn_value and enemy_turn < turn_value:

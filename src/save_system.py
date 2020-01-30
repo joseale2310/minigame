@@ -20,10 +20,10 @@ def save(user):
 	print "\n"+string+"0. Create new save.file  Q. Cancel"
 	success = False
 	while success == False:
-		file_chosen = raw_input("Choose saving file: ")
+		file_chosen = input("Choose saving file: ")
 
 		if file_chosen=="0":
-			save_name = raw_input("Saving file name: ")
+			save_name = input("Saving file name: ")
 			if save_name.lower() == "q":
 				print "Cancel"
 				success = True 
@@ -62,7 +62,7 @@ def load():
 	print "\n" + string
 	success = False
 	while success == False:
-		file_chosen = raw_input("Choose file to load or enter 'Q' to cancel: ")
+		file_chosen = input("Choose file to load or enter 'Q' to cancel: ")
 		
 		if file_chosen.isdigit():
 			if int(file_chosen) in range(1,len(load_files)+1): 

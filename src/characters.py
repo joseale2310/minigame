@@ -77,7 +77,7 @@ class champion:
 ####################################################
 def createuser():
 	"""Function to create a character"""
-	name = raw_input("Hello! Write your character's name! ")
+	name = input("Hello! Write your character's name! ")
 	tipe = input("Now your character's profession!\nWarrior(1), Guardian(2), Assassin(3), Mage(4), Antimage(5): ")
 	tipes=["warrior","guardian","assassin", "mage", "antimage"]
 	print tipe
